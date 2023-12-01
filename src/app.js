@@ -13,6 +13,14 @@ const Photo = require("./models/photos");
 //     console.log("MongoDBコネクションエラー!");
 //     console.log(err);
 //   });
+var router = express.Router();
+
+// Hello Worldを返却するAPI
+router.get("/", function (req, res, next) {
+  res.json({ message: "Hello World" });
+});
+
+module.exports = router;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -30,4 +38,14 @@ app.listen(8080, (req, res) => {
 
 app.get("/photo", (req, res) => {
   res.render("photo");
+});
+
+app.get("/api/v1/", (req, res) => {
+  const response = {
+    result: "ok",
+    api_level: 1,
+    version: { "photo-project": "0.0.1" },
+  };
+
+  res.json(response);
 });
