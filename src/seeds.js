@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Photo = require("./models/photos");
+const mongoose = import("mongoose");
+const Photo = import("./models/photos");
 
 mongoose
   .connect("mongodb://localhost:27017/photo")

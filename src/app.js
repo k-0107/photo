@@ -1,9 +1,9 @@
-const path = require("path");
-const express = require("express");
+const path = import("path");
+const express = import("express");
 const app = express();
 // const mongoose = require("mongoose");
-const Photo = require("./models/photos");
-const cors = require("cors");
+const Photo = import("./models/photos");
+const cors = import("cors");
 
 // mongoose
 //   .connect("mongodb://localhost:27017/photo")
