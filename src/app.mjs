@@ -4,11 +4,11 @@ const __dirname = path.resolve();
 const app = express();
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "src/views"));
 
 console.log(__dirname);
 
-app.use("/photo", express.static(path.join(__dirname, "learn-react/dist")));
+app.use("/photo", express.static(path.join(__dirname, "../learn-react/dist")));
 
 app.listen(8080, (req, res) => {
   console.log("ポート8080で待機中...");
