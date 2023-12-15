@@ -1,22 +1,7 @@
-const path = import("path");
-const express = import("express");
+import path from "path";
+import express from "express";
 const app = express();
-// const mongoose = require("mongoose");
-const Photo = import("./models/photos");
-const cors = import("cors");
-
-// mongoose
-//   .connect("mongodb://localhost:27017/photo")
-//   .then(() => {
-//     console.log("MongoDBコネクションOK!");
-//   })
-//   .catch((err) => {
-//     console.log("MongoDBコネクションエラー!");
-//     console.log(err);
-//   });
-var router = express.Router();
-
-app.use(cors());
+const router = express.Router();
 
 // Hello Worldを返却するAPI
 router.get("/", function (req, res, next) {
