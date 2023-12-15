@@ -1,8 +1,9 @@
 const path = require("path");
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const Photo = require("./models/photos");
+const cors = require("cors");
 
 // mongoose
 //   .connect("mongodb://localhost:27017/photo")
@@ -14,6 +15,8 @@ const Photo = require("./models/photos");
 //     console.log(err);
 //   });
 var router = express.Router();
+
+app.use(cors());
 
 // Hello Worldを返却するAPI
 router.get("/", function (req, res, next) {
