@@ -10,6 +10,9 @@ console.log(__dirname);
 
 app.use("/photo", express.static(path.join(__dirname, "../learn-react/dist")));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.listen(8080, (req, res) => {
   console.log("ポート8080で待機中...");
 });
@@ -26,4 +29,9 @@ app.get("/api/v1/", (req, res) => {
   };
 
   res.json(response);
+});
+
+app.post("/messege", (req, res) => {
+  console.log(req.body);
+  res.json(req.body);
 });
