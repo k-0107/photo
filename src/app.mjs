@@ -43,7 +43,7 @@ app.get("/api/v1/", (req, res) => {
   res.json(response);
 });
 
-app.post("/messege", (req, res) => {
+app.post("/message", (req, res) => {
   console.log(req.body);
   res.json(req.body);
 
