@@ -29,10 +29,6 @@ app.listen(8080, (req, res) => {
   console.log("ポート8080で待機中...");
 });
 
-app.get("/photo", (req, res) => {
-  res.render("photo");
-});
-
 app.get("/api/v1/", (req, res) => {
   const response = {
     result: "ok",
@@ -43,7 +39,13 @@ app.get("/api/v1/", (req, res) => {
   res.json(response);
 });
 
-app.post("/message", (req, res) => {
+app.get("/api/v1/message", async (req, res) => {
+  const photos = await Photo.find({});
+  console.log(photos);
+  res.render("photo", { photos });
+});
+
+app.post("/api/v1/message", (req, res) => {
   console.log(req.body);
   res.json(req.body);
 
