@@ -40,25 +40,31 @@ app.get("/api/v1/", (req, res) => {
 });
 
 app.get("/api/v1/message", async (req, res) => {
-  const photos = await Photo.find({});
-  console.log(photos);
-  res.render("photo", { photos });
+  try {
+    const photos = await Photo.find({});
+    console.log(photos);
+    res.json({ result: 0, data: photos });
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    res.status(500).json({ error: "Failed to fetch messages" });
+  }
 });
 
-app.post("/api/v1/message", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-
-  const photo_test = new Photo({
-    message: req.body.message,
-  });
-
-  photo_test
-    .save()
-    .then((photo_test) => {
-      console.log(photo_test);
-    })
-    .catch((e) => {
-      console.log(e);
+app.post("/api/v1/message", async (req, res) => {
+  try {
+    const photo_test = new Photo({
+      message: req.body.message,
+      date: new Date(),
     });
+
+    const savedPhoto = await photo_test.save();
+
+    res.json({
+      result: 0,
+      data: { date: savedPhoto.date, message: savedPhoto.message },
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ result: 1, error: "Failed to save message" });
+  }
 });
