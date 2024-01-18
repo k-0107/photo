@@ -2,6 +2,10 @@ import path from "path";
 import express from "express";
 import mongoose from "mongoose";
 import Photo from "../src/models/photos.mjs";
+
+import multer from "multer";
+const upload = multer({ dest: "uploads/" });
+
 const __dirname = path.resolve();
 const app = express();
 
@@ -67,4 +71,9 @@ app.post("/api/v1/message", async (req, res) => {
     console.error(e);
     res.status(500).json({ result: 1, error: "Failed to save message" });
   }
+});
+
+app.post("/photo", upload.single("image"), (req, res) => {
+  console.log(req.body, req.file);
+  res.send("受け付けました");
 });
